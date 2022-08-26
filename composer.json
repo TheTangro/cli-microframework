@@ -1,5 +1,6 @@
 {
-  "name": "thetangro/parser",
+  "name": "thetangro/microframework",
+  "type": "library",
   "authors": [
     {
       "name": "mchekavyj",
