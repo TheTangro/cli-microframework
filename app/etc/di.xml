@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+    <factory for="Symfony\Component\Console\Application" reference="TT\Kernel\Factories\ConsoleFactory::create"/>
+    <type class="TT\Kernel\Factories\ConsoleFactory">
+        <arguments>
+            <argument name="commands" type="array">
+                <item name="clear_cache" value="TT\Kernel\Console\CacheClear" type="object"/>
+            </argument>
+        </arguments>
+    </type>
+</config>

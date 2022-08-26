@@ -1,0 +1,8 @@
+/var
+/generated
+!/var/log/.gitkeep
+!/var/cache/.gitkeep
+!/generated/.gitkeep
+/.env
+/vendor
+/.idea

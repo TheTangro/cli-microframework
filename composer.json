@@ -1,0 +1,23 @@
+{
+  "name": "thetangro/parser",
+  "authors": [
+    {
+      "name": "mchekavyj",
+      "email": "mc@zaproo.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TT\\": "app/code/TT"
+    }
+  },
+  "require": {
+    "php": "7.4.30",
+    "php-di/php-di": "^6.4",
+    "symfony/console": "^5.4",
+    "symfony/cache": "^5.4",
+    "ext-simplexml": "*",
+    "ext-dom": "*",
+    "symfony/dotenv": "^5.4"
+  }
+}
