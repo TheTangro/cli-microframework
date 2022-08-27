@@ -33,21 +33,21 @@ class MainReader implements ReaderInterface
     public function extractConfig(): array
     {
         $dotEnv = $this->directoryReader->getFilePath('.env');
+        $dotEnvs = [];
 
         if (file_exists($dotEnv)) {
-            $this->dotenv->load($dotEnv);
+            $dotEnvs = $this->dotenv->parse(file_get_contents($dotEnv));
         }
 
-        $config = [
-            'db_connection' => [
-                'user' => getenv('DB_USER'),
-                'password' => getenv('DB_PASS'),
-                'host' => getenv('DB_HOST'),
-            ]
+        $envConfig = [
+            'env' => array_combine(
+              array_map('strtolower', array_keys($dotEnvs)),
+              array_values($dotEnvs)
+            )
         ];
 
         $fileConfig = (array) @include_once $this->directoryReader->getFilePath('config.php', ['app', 'etc']);
 
-        return array_merge($fileConfig, $config);
+        return array_replace_recursive($fileConfig, $envConfig);
     }
 }

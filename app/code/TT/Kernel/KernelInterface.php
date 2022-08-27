@@ -7,9 +7,6 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 interface KernelInterface
 {
-    public function getLogDir(): string;
-
-
     public function init(): void;
 
     public function terminate(): void;
@@ -17,4 +14,6 @@ interface KernelInterface
     public function handleError(int $errno, string $errstr, string $errfile, int $errline): bool;
 
     public function getContainer(): ContainerInterface;
+
+    public function getGeneratedDir(): string;
 }

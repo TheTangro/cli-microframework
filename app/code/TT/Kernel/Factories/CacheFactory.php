@@ -5,16 +5,21 @@ namespace TT\Kernel\Factories;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 use TT\Kernel\Config;
+use TT\Kernel\DirectoryReader;
 use TT\Kernel\FactoryInterface;
 
 class CacheFactory implements FactoryInterface
 {
     private Config $config;
 
+    private DirectoryReader $directoryReader;
+
     public function __construct(
-        Config $config
+        Config $config,
+        DirectoryReader $directoryReader
     ) {
         $this->config = $config;
+        $this->directoryReader = $directoryReader;
     }
 
     public function create(): object
@@ -35,6 +40,6 @@ class CacheFactory implements FactoryInterface
 
     private function getDefaultCacheDir(): string
     {
-        return BP . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'cache';
+        return $this->directoryReader->getRootDir() . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'cache';
     }
 }

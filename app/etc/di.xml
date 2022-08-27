@@ -2,11 +2,37 @@
 
 <config>
     <factory for="Symfony\Component\Console\Application" reference="TT\Kernel\Factories\ConsoleFactory::create"/>
-    <type class="TT\Kernel\Factories\ConsoleFactory">
+    <factory for="TT\Logging\SystemHandler" reference="TT\Kernel\Factories\SystemLoggerHandlerFactory::create"/>
+
+    <type name="TT\Kernel\Factories\SystemLoggerHandlerFactory">
         <arguments>
-            <argument name="commands" type="array">
-                <item name="clear_cache" value="TT\Kernel\Console\CacheClear" type="object"/>
-            </argument>
+            <argument name="systemHandler" type="object">TT\Logging\DefaultSystemHandler</argument>
         </arguments>
     </type>
+
+    <virtualType name="TT\Logging\DefaultSystemHandler" type="TT\Kernel\Logging\Handlers\FileHandler">
+        <arguments>
+            <argument name="stream" type="string">var/log/system.log</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="TT\Logging\ExceptionHandler" type="TT\Kernel\Logging\Handlers\FileHandler">
+        <arguments>
+            <argument name="stream" type="string">var/log/exception.log</argument>
+            <argument name="level" type="const">\Monolog\Logger::ERROR</argument>
+            <argument name="bubble" type="bool">false</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="TT\Logging\SystemLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" type="string">System Logger</argument>
+            <argument name="handlers" type="array">
+                <item name="info_handler" type="object">TT\Logging\SystemHandler</item>
+                <item name="exception_handler" type="object">TT\Logging\ExceptionHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Psr\Log\LoggerInterface" type="TT\Logging\SystemLogger"/>
 </config>

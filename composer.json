@@ -19,6 +19,10 @@
     "symfony/cache": "^5.4",
     "ext-simplexml": "*",
     "ext-dom": "*",
-    "symfony/dotenv": "^5.4"
+    "symfony/dotenv": "^5.4",
+    "monolog/monolog": "^2.8",
+    "psr/log": "^1.1",
+    "doctrine/orm": ">=2.0",
+    "doctrine/annotations": "^1.13"
   }
 }

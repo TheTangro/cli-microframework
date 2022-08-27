@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+    <type name="TT\Kernel\Events\EventManager">
+        <arguments>
+            <argument name="subscribers" type="array">
+                <item name="kernel.container.configure" type="array">
+                    <item name="orm.load.configs" type="string">TT\ORM\Observers\Kernel\Init\LoadConfig</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="TT\Kernel\Factories\ConsoleFactory">
+        <arguments>
+            <argument name="commands" type="array">
+                <item name="test" type="object">TT\ORM\Console\Test</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

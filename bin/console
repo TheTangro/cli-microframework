@@ -1,10 +1,11 @@
 <?php
 
+use TT\Kernel\Kernel;
+
 define('BP', realpath(__DIR__ . '/../'));
 
 require_once BP . '/vendor/autoload.php';
 require_once BP . '/app/bootstrap.php';
-require_once BP . '/app/Kernel.php';
 
 if (PHP_SAPI !== 'cli') {
     throw new \Exception('Unable to start non-cli application');

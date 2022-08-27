@@ -2,57 +2,81 @@
     <xs:element name="config">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="preference" minOccurs="0">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="xs:string">
-                                <xs:attribute type="xs:string" name="for"/>
-                                <xs:attribute type="xs:string" name="class"/>
-                            </xs:extension>
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="factory" minOccurs="0">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="xs:string">
-                                <xs:attribute type="xs:string" name="for"/>
-                                <xs:attribute type="xs:string" name="reference"/>
-                            </xs:extension>
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="type" maxOccurs="unbounded" minOccurs="0">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="arguments">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="argument">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence>
-                                                    <xs:element name="item" maxOccurs="unbounded" minOccurs="0" type="inner-item"/>
-                                                </xs:sequence>
-                                                <xs:attribute type="xs:string" name="name" use="optional"/>
-                                                <xs:attribute type="xs:string" name="type" use="optional"/>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute type="xs:string" name="class" use="optional"/>
-                    </xs:complexType>
-                </xs:element>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="preference" minOccurs="0">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute type="xs:string" name="for"/>
+                                    <xs:attribute type="xs:string" name="type"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="factory" minOccurs="0">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute type="xs:string" name="for"/>
+                                    <xs:attribute type="xs:string" name="reference"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="virtualType" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="arguments">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="argument">
+                                                <xs:complexType mixed="true">
+                                                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:element name="item" minOccurs="0" type="inner-item"/>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute type="xs:string" name="name"/>
+                            <xs:attribute type="xs:string" name="type"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="type" maxOccurs="unbounded" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="arguments">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="argument">
+                                                <xs:complexType mixed="true">
+                                                    <xs:sequence minOccurs="0">
+                                                        <xs:element name="item" minOccurs="0" type="inner-item"/>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute type="xs:string" name="name"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="inner-item">
+    <xs:complexType name="inner-item" mixed="true">
         <xs:sequence>
             <xs:element name="item" minOccurs="0" type="inner-item"/>
         </xs:sequence>
         <xs:attribute type="xs:string" name="name"/>
-        <xs:attribute type="xs:string" name="value" use="optional"/>
         <xs:attribute type="xs:string" name="type"/>
     </xs:complexType>
 </xs:schema>

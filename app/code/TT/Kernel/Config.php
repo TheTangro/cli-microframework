@@ -24,4 +24,9 @@ class Config
 
         return $config ?? $defaultValue;
     }
+
+    public function isProduction(): bool
+    {
+        return $this->get('is_production', false);
+    }
 }
