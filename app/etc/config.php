@@ -10,6 +10,7 @@ return [
         ]
     ],
     'modules' => [
-        'TT_Kernel' => true
+        'TT_Kernel' => true,
+        'TT_ORM' => true
     ]
 ];

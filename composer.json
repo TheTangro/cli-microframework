@@ -1,6 +1,6 @@
 {
   "name": "thetangro/microframework",
-  "type": "library",
+  "type": "project",
   "authors": [
     {
       "name": "mchekavyj",
@@ -9,11 +9,13 @@
   ],
   "autoload": {
     "psr-4": {
-      "TT\\": "app/code/TT"
+      "TT\\Kernel\\": "src/TT/Kernel",
+      "TT\\ORM\\": "src/TT/ORM",
+      "TT\\Installer\\": "src/TT/Installer"
     }
   },
   "require": {
-    "php": "7.4.30",
+    "php": ">=7.4",
     "php-di/php-di": "^6.4",
     "symfony/console": "^5.4",
     "symfony/cache": "^5.4",
@@ -24,5 +26,13 @@
     "psr/log": "^1.1",
     "doctrine/orm": ">=2.0",
     "doctrine/annotations": "^1.13"
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "TT\\Installer\\Installer::postInstall"
+    ]
+  },
+  "config": {
   }
 }

@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <config>
+    <preference for="TT\Kernel\Events\EventManagerInterface" type="TT\Kernel\Events\EventManager"/>
+    <preference for="Psr\Log\LoggerInterface" type="TT\Logging\SystemLogger"/>
+
+    <type name="TT\Kernel\Events\EventManager">
+        <arguments>
+            <argument name="subscribers" type="array">
+                <item name="kernel.container.configure" type="array">
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="TT\Kernel\Factories\ConsoleFactory">
+        <arguments>
+            <argument name="commands" type="array">
+                <item name="clear_cache" type="object">TT\Kernel\Console\CacheClear</item>
+            </argument>
+        </arguments>
+    </type>
+
     <factory for="Symfony\Component\Console\Application" reference="TT\Kernel\Factories\ConsoleFactory::create"/>
     <factory for="TT\Logging\SystemHandler" reference="TT\Kernel\Factories\SystemLoggerHandlerFactory::create"/>
 
@@ -33,6 +53,4 @@
             </argument>
         </arguments>
     </virtualType>
-
-    <preference for="Psr\Log\LoggerInterface" type="TT\Logging\SystemLogger"/>
 </config>
