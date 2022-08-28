@@ -10,12 +10,4 @@
             </argument>
         </arguments>
     </type>
-
-    <type name="TT\Kernel\Factories\ConsoleFactory">
-        <arguments>
-            <argument name="commands" type="array">
-                <item name="test" type="object">TT\ORM\Console\Test</item>
-            </argument>
-        </arguments>
-    </type>
 </config>

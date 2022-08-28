@@ -64,7 +64,8 @@ class Kernel implements KernelInterface
         $registrationPHPs = $cache->get('kernel.registrations.files', static function() {
             $possiblePaths = [
                 'app/code' => '*' . DIRECTORY_SEPARATOR . '*',
-                'vendor' => '*'
+                'vendor' => '*',
+                'vendor/' => 'thetangro/yaff/app/code/TT/*'
             ];
             $files = [];
 

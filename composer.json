@@ -1,17 +1,16 @@
 {
-  "name": "thetangro/microframework",
+  "name": "thetangro/yaff",
   "type": "project",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "mchekavyj",
-      "email": "mc@zaproo.com"
+      "email": "thetangro@gmail.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "TT\\Kernel\\": "src/TT/Kernel",
-      "TT\\ORM\\": "src/TT/ORM",
-      "TT\\Installer\\": "src/TT/Installer"
+      "TT\\": "app/code/TT/"
     }
   },
   "require": {
@@ -29,8 +28,7 @@
   },
   "scripts": {
     "post-create-project-cmd": [
-      "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-      "TT\\Installer\\Installer::postInstall"
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
   },
   "config": {
