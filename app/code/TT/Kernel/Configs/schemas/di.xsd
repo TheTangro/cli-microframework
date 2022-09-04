@@ -32,7 +32,7 @@
                                             <xs:element maxOccurs="unbounded" name="argument">
                                                 <xs:complexType mixed="true">
                                                     <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                                                        <xs:element name="item" minOccurs="0" type="inner-item"/>
+                                                        <xs:element name="item" minOccurs="0" maxOccurs="unbounded" type="inner-item"/>
                                                     </xs:sequence>
                                                     <xs:attribute name="name" type="xs:string" use="required" />
                                                     <xs:attribute name="type" type="xs:string" use="required" />
@@ -55,7 +55,7 @@
                                             <xs:element maxOccurs="unbounded" name="argument">
                                                 <xs:complexType mixed="true">
                                                     <xs:sequence minOccurs="0">
-                                                        <xs:element name="item" minOccurs="0" type="inner-item"/>
+                                                        <xs:element name="item" minOccurs="0" maxOccurs="unbounded" type="inner-item"/>
                                                     </xs:sequence>
                                                     <xs:attribute name="name" type="xs:string" use="required" />
                                                     <xs:attribute name="type" type="xs:string" use="required" />
@@ -74,7 +74,7 @@
     </xs:element>
     <xs:complexType name="inner-item" mixed="true">
         <xs:sequence>
-            <xs:element name="item" minOccurs="0" type="inner-item"/>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded" type="inner-item"/>
         </xs:sequence>
         <xs:attribute type="xs:string" name="name"/>
         <xs:attribute type="xs:string" name="type"/>
