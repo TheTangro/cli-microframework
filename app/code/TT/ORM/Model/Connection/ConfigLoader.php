@@ -55,7 +55,7 @@ class ConfigLoader
         });
         $cache = $this->cache instanceof AdapterInterface ? $this->cache : null;
 
-        $config = ORMSetup::createAnnotationMetadataConfiguration(
+        $config = ORMSetup::createAttributeMetadataConfiguration(
             $models,
             !$this->config->isProduction(),
             $this->kernel->getGeneratedDir(),
