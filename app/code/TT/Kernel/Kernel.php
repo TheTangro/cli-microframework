@@ -14,7 +14,7 @@ class Kernel implements KernelInterface
     public function init(): void
     {
         set_error_handler([$this, 'handleError']);
-        register_shutdown_function([$this, 'terminate']);
+        register_shutdown_function(fn() => $this->beforeTerminate());
         $this->container = $this->configureDiContainer();
     }
 
@@ -24,8 +24,18 @@ class Kernel implements KernelInterface
         $application->run();
     }
 
-    public function terminate(): void
+    private function beforeTerminate(): void
     {
+        $eventManager = $this->getContainer()->get(\TT\Kernel\Events\EventManagerInterface::class);
+        $eventManager->dispatchEvent(
+            'kernel.terminate.before',
+            ['kernel' => $this]
+        );
+    }
+
+    public function terminate(int $status = 0): void
+    {
+        exit($status);
     }
 
     public function handleError(int $errno, string $errstr, string $errfile, int $errline): bool

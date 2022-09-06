@@ -9,7 +9,7 @@ interface KernelInterface
 {
     public function init(): void;
 
-    public function terminate(): void;
+    public function terminate(int $status = 0): void;
 
     public function handleError(int $errno, string $errstr, string $errfile, int $errline): bool;
 
